@@ -1,0 +1,6 @@
+@CineSplain.API_HostAddress = http://localhost:5206
+
+GET {{CineSplain.API_HostAddress}}/movies/
+Accept: application/json
+
+###
