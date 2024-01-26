@@ -12,14 +12,14 @@ public class MoviesController : Controller {
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<Movie> GetMovie(int id) {
+    public ActionResult<FullDisplayMovie> GetMovie(int id) {
         try {
             var queryParams = new Dictionary<string, string> {
                 { "append_to_response", "images,videos" },
             };
 
 
-            var movie = ApiUtility.GetTMDBResponse<Movie>($"movie/{id}", queryParams);
+            var movie = ApiUtility.GetTMDBResponse<FullDisplayMovie>($"movie/{id}", queryParams);
 
             if (movie?.Videos?.Results != null) {
 
