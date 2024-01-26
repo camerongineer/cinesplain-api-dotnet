@@ -6,7 +6,7 @@ public class Video {
     public string Iso_3166_1 { get; set; }
     public string Key { get; set; }
     public string Name { get; set; }
-    public DateTime PublishedAt { get; set; }
+    public string PublishedAt { get; set; }
     public string Site { get; set; }
     public int Size { get; set; }
     public bool Official { get; set; }
