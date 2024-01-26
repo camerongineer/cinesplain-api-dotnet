@@ -1,7 +1,7 @@
 namespace CineSplain.API.Models.TMBD;
 
 public class FullDisplayMovie: Movie {
-    public object BelongsToCollection { get; set; }
+    public Collection BelongsToCollection { get; set; }
     public int Budget { get; set; }
     public List<Genre> Genres { get; set; }
     public List<int> GenreIds { get; set; }
