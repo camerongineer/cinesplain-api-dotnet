@@ -19,7 +19,7 @@ public class Movie {
     public string PosterPath { get; set; }
     public List<ProductionCompany> ProductionCompanies { get; set; }
     public List<ProductionCountry> ProductionCountries { get; set; }
-    public DateTime? ReleaseDate { get; set; }
+    public string ReleaseDate { get; set; }
     public long Revenue { get; set; }
     public int Runtime { get; set; }
     public List<SpokenLanguage> SpokenLanguages { get; set; }
