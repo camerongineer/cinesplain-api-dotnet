@@ -16,5 +16,5 @@ public class Person {
     public double Popularity { get; set; }
     public string ProfilePath { get; set; }
     public PersonImageCategory Images { get; set; }
-    public Credits MovieCredits { get; set; }
+    public CreditCategory MovieCredits { get; set; }
 }

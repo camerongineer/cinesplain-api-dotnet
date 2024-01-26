@@ -57,9 +57,9 @@ public class MoviesController : Controller {
     [HttpGet("{id:int}/Credits")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<Credits> GetMovieCredits(int id) {
+    public ActionResult<CreditCategory> GetMovieCredits(int id) {
         try {
-            var credits = ApiUtility.GetTMDBResponse<Credits>($"movie/{id}/credits");
+            var credits = ApiUtility.GetTMDBResponse<CreditCategory>($"movie/{id}/credits");
             return Ok(credits);
         } catch (Exception e) {
             Console.WriteLine(e);
