@@ -59,6 +59,7 @@ public class MoviesController : Controller {
     [HttpGet("{id:int}/Credits")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [OutputCache(Duration = 10800)]
     public ActionResult<MovieCreditCategory> GetMovieCredits(int id) {
         try {
             var credits = ApiUtility.GetTMDBResponse<MovieCreditCategory>($"movie/{id}/credits");
@@ -73,6 +74,7 @@ public class MoviesController : Controller {
     [HttpGet("{id:int}/Similar")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetSimilarMovies(int id) {
         try {
             var similarMovies = ApiUtility.GetTMDBResponse<MovieListPage>($"movie/{id}/similar");
@@ -87,6 +89,7 @@ public class MoviesController : Controller {
     [HttpGet("{id:int}/Recommended")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetRecommendedMovies(int id) {
         try {
             var recommendedMovies = ApiUtility.GetTMDBResponse<MovieListPage>($"movie/{id}/recommendations");
