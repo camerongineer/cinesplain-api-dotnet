@@ -11,13 +11,13 @@ public class PeopleController : ControllerBase {
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<Person> GetPerson(string id) {
+    public ActionResult<FullDisplayPerson> GetPerson(string id) {
         try {
             var queryParams = new Dictionary<string, string> {
                 { "append_to_response", "images,movie_credits" },
             };
 
-            var person = ApiUtility.GetTMDBResponse<Person>($"person/{id}", queryParams);
+            var person = ApiUtility.GetTMDBResponse<FullDisplayPerson>($"person/{id}", queryParams);
             return Ok(person);
         } catch (Exception e) {
             Console.WriteLine(e);
