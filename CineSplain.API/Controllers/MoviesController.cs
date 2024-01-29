@@ -2,7 +2,6 @@
 using CineSplain.API.Models.TMBD;
 using CineSplain.API.Utilities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OutputCaching;
 
 namespace CineSplain.API.Controllers;
 
@@ -58,9 +57,9 @@ public class MoviesController : Controller {
     [HttpGet("{id:int}/Credits")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<MovieCreditCategory> GetMovieCredits(int id) {
+    public ActionResult<CreditCategory> GetMovieCredits(int id) {
         try {
-            var credits = ApiUtility.GetTMDBResponse<MovieCreditCategory>($"movie/{id}/credits");
+            var credits = ApiUtility.GetTMDBResponse<CreditCategory>($"movie/{id}/credits");
             return Ok(credits);
         } catch (Exception e) {
             Console.WriteLine(e);
@@ -119,7 +118,6 @@ public class MoviesController : Controller {
     [HttpGet("NowPlaying")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetNowPlayingMovies() {
         try {
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"movie/now_playing");
@@ -134,7 +132,6 @@ public class MoviesController : Controller {
     [HttpGet("Discover")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetDiscoverMovies() {
         try {
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie");
@@ -149,7 +146,6 @@ public class MoviesController : Controller {
     [HttpGet("Upcoming")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetUpcomingMovies() {
         try {
             var queryParams = new Dictionary<string, string> {
@@ -171,7 +167,6 @@ public class MoviesController : Controller {
     [HttpGet("Classics")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetClassicMovies() {
         try {
             var queryParams = new Dictionary<string, string> {
@@ -193,7 +188,6 @@ public class MoviesController : Controller {
     [HttpGet("MostLoved")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetMostLovedMovies() {
         try {
             var queryParams = new Dictionary<string, string> {
@@ -216,7 +210,6 @@ public class MoviesController : Controller {
     [HttpGet("MostHated")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [OutputCache(Duration = 86400)]
     public ActionResult<MovieListPage> GetMostHatedMovies() {
         try {
             var queryParams = new Dictionary<string, string> {
