@@ -13,6 +13,7 @@ public class MoviesController : Controller {
     [HttpGet("{id:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [OutputCache(Duration = 86400)]
     public ActionResult<FullDisplayMovie> GetMovie(int id) {
         try {
             var queryParams = new Dictionary<string, string> {
