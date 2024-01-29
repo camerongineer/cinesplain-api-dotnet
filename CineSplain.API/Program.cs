@@ -5,7 +5,6 @@ DotNetEnv.Env.Load();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddOutputCache();
 
 var app = builder.Build();
 
@@ -25,7 +24,5 @@ app.UseCors(options => {
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseOutputCache();
 
 app.Run();
