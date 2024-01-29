@@ -239,6 +239,7 @@ public class MoviesController : Controller {
     [HttpGet("OMDB{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [OutputCache(Duration = 604800)]
     public ActionResult<OmdbMovieDetails> GetOmdbMovieDetails(string id) {
         try {
             var omdbMovieDetails = ApiUtility.GetOMDBResponse<OmdbMovieDetails>(id);
