@@ -16,8 +16,13 @@ if (app.Environment.IsDevelopment()) {
 
 app.UseHttpsRedirection();
 
+var allowedOrigin1 = Environment.GetEnvironmentVariable("ALLOWED_ORIGIN_1");
+var allowedOrigin2 = Environment.GetEnvironmentVariable("ALLOWED_ORIGIN_2");
+var allowedOrigin3 = Environment.GetEnvironmentVariable("ALLOWED_ORIGIN_3");
+var allowedOrigin4 = Environment.GetEnvironmentVariable("ALLOWED_ORIGIN_4");
+
 app.UseCors(options => {
-    options.AllowAnyOrigin();
+    options.WithOrigins(allowedOrigin1, allowedOrigin2, allowedOrigin3, allowedOrigin4);
     options.AllowAnyMethod();
     options.AllowAnyHeader();
 });
