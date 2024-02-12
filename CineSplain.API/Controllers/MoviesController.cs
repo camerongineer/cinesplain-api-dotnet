@@ -164,6 +164,8 @@ public class MoviesController : Controller {
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
+            var movieListSubset = movieList.Results?[0..10];
+            movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
             Console.WriteLine(e);
@@ -186,6 +188,8 @@ public class MoviesController : Controller {
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
+            var movieListSubset = movieList.Results?[0..12];
+            movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
             Console.WriteLine(e);
@@ -209,6 +213,8 @@ public class MoviesController : Controller {
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
+            var movieListSubset = movieList.Results?[0..8];
+            movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
             Console.WriteLine(e);
@@ -232,6 +238,8 @@ public class MoviesController : Controller {
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
+            var movieListSubset = movieList.Results?[0..8];
+            movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
             Console.WriteLine(e);
