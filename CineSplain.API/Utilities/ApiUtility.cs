@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using CineSplain.API.Models.TMBD;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace CineSplain.API.Utilities;
@@ -78,5 +79,16 @@ public static class ApiUtility {
         string day = date.Day.ToString().PadLeft(2, '0');
 
         return format.Replace("yyyy", year).Replace("MM", month).Replace("dd", day);
+    }
+
+    public static IEnumerable<ListDisplayMovieCrewCredit> CombineCrewCredits(List<ListDisplayMovieCrewCredit> crewCredits) {
+        Dictionary<int, ListDisplayMovieCrewCredit> uniqueMovies = [];
+
+        foreach (var credit in crewCredits.Where(credit => !uniqueMovies.TryAdd(credit.Id, credit))) {
+            uniqueMovies[credit.Id].Job = $"{uniqueMovies[credit.Id].Job}, {credit.Job}";
+            uniqueMovies[credit.Id].Department = $"{uniqueMovies[credit.Id].Department}, {credit.Department}";
+        }
+
+        return uniqueMovies.Values.ToList();
     }
 }
