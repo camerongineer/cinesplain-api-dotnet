@@ -18,6 +18,8 @@ public class PeopleController : ControllerBase {
             };
 
             var person = ApiUtility.GetTMDBResponse<FullDisplayPerson>($"person/{id}", queryParams);
+            var movieCrewCredits = ApiUtility.CombineCrewCredits(person.MovieCredits.Crew);
+            person.MovieCredits.Crew = (List<ListDisplayMovieCrewCredit>)movieCrewCredits;
             return Ok(person);
         } catch (Exception e) {
             Console.WriteLine(e);
