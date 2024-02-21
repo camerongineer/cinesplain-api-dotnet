@@ -81,8 +81,9 @@ public static class ApiUtility {
         return format.Replace("yyyy", year).Replace("MM", month).Replace("dd", day);
     }
 
-    public static IEnumerable<ListDisplayMovieCrewCredit> CombineCrewCredits(List<ListDisplayMovieCrewCredit> crewCredits) {
-        Dictionary<int, ListDisplayMovieCrewCredit> uniqueMovies = [];
+    public static IEnumerable<T> CombineCrewCredits<T>(List<T> crewCredits) where T : ICrewCredit {
+
+        Dictionary<int, T> uniqueMovies = new Dictionary<int, T>();
 
         foreach (var credit in crewCredits.Where(credit => !uniqueMovies.TryAdd(credit.Id, credit))) {
             uniqueMovies[credit.Id].Job = $"{uniqueMovies[credit.Id].Job}, {credit.Job}";
