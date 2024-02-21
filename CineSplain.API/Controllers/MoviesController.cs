@@ -63,6 +63,8 @@ public class MoviesController : Controller {
     public ActionResult<MovieCreditCategory> GetMovieCredits(int id) {
         try {
             var credits = ApiUtility.GetTMDBResponse<MovieCreditCategory>($"movie/{id}/credits");
+            var crewCredits = ApiUtility.CombineCrewCredits(credits?.Crew);
+            credits.Crew = (List<CrewMember>)crewCredits;
             return Ok(credits);
         } catch (Exception e) {
             Console.WriteLine(e);
