@@ -164,7 +164,7 @@ public class MoviesController : Controller {
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
-            var movieListSubset = movieList.Results?[0..10];
+            var movieListSubset = movieList.Results?.Take(10);
             movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
@@ -188,7 +188,7 @@ public class MoviesController : Controller {
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
-            var movieListSubset = movieList.Results?[0..12];
+            var movieListSubset = movieList.Results?.Take(12);
             movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
@@ -207,13 +207,13 @@ public class MoviesController : Controller {
             var queryParams = new Dictionary<string, string> {
                 { "primary_release_date.gte", ApiUtility.GetFormattedDate(DateTime.Now - TimeSpan.FromHours(2190)) },
                 { "sort_by", "vote_average.desc" },
-                { "vote_count.gte", "20" },
+                { "vote_count.gte", "15" },
                 { "without_genres", "99,10755" },
                 { "with_original_language", "en" }
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
-            var movieListSubset = movieList.Results?[0..8];
+            var movieListSubset = movieList.Results?.Where(movie => movie.Popularity > 25).Take(8);
             movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
@@ -232,13 +232,13 @@ public class MoviesController : Controller {
             var queryParams = new Dictionary<string, string> {
                 { "primary_release_date.gte", ApiUtility.GetFormattedDate(DateTime.Now - TimeSpan.FromHours(2190)) },
                 { "sort_by", "vote_average.asc" },
-                { "vote_count.gte", "20" },
+                { "vote_count.gte", "15" },
                 { "without_genres", "99,10755" },
                 { "with_original_language", "en" }
             };
 
             var movieList = ApiUtility.GetTMDBResponse<MovieListPage>($"discover/movie", queryParams);
-            var movieListSubset = movieList.Results?[0..8];
+            var movieListSubset = movieList.Results?.Where(movie => movie.Popularity > 25).Take(8);
             movieList.Results = movieListSubset;
             return Ok(movieList);
         } catch (Exception e) {
